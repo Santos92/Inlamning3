@@ -2,6 +2,7 @@ package Main.Init;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -35,11 +36,30 @@ public class ActionInput implements ActionListener {
 				if(x.equals(cell0))
 					JOptionPane.showMessageDialog(null, "Kan inte flytta en tom ruta");
 				if(col-1 == cell0.getCol() || col+1 == cell0.getCol() || row-1 == cell0.getRow() || row+1 == cell0.getRow())
+				{
 					if(row == cell0.getRow() || col == cell0.getCol())
 					{
 						cell0.setMark(x.toString());
 						x.setMark("");
 					}
+				}
+//				else if(col == cell0.getCol())
+//				{
+//					LinkedList<Cells> temp = new LinkedList<>();
+//					for(Cells z : GameBoard.GameButtons)
+//						if(z.getCol() == cell0.getCol())
+//						{
+//							temp.add(z);
+//						}
+//					for(Cells z : GameBoard.GameButtons)
+//						if(temp.get.getCol() == .get(index))
+//					System.out.println(temp);
+//				}
+//				else if(row == cell0.getRow())
+//				{
+//					
+//				}
+				
 			}
 		}
 	}
