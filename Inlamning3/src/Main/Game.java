@@ -17,26 +17,30 @@ import javax.swing.JTextField;
 import Main.GameBoard.GameBoard;
 import Main.Init.Window;
 
-public class Game extends JPanel implements ActionListener {
+public class Game extends JPanel implements ActionListener, Runnable {
 
 	private static final long serialVersionUID = -1789573121997106957L;
 	public static final int WIDTH = 900, HEIGHT = 700;
 	public static final String TITLE = "15 Spelet";
 
-	ArrayList<JButton> GameButtons = new ArrayList<>();
-	int size = 4;
+	private Thread t;
+	private boolean running = false;
+	private double tid = 0;
 	
-	JButton newGame = new JButton("Nytt spel");
-	JLabel timer = new JLabel("time: 15.5");
+	private int size = 4;
 	
-	JLabel Size = new JLabel("Storlek: ");
-	JTextField newSize = new JTextField(""+size,2);
+	private JButton newGame = new JButton("Nytt spel");
+	private JLabel timer = new JLabel("time: 15.5");
 	
-	JPanel Meny = new JPanel();
-	JPanel GameContent = new JPanel();
-	JPanel Score = new JPanel();
+	private JLabel Size = new JLabel("Storlek: ");
+	private JTextField newSize = new JTextField(""+size,2);
 	
-	GameBoard Board;
+	private JPanel Meny = new JPanel();
+	private JPanel GameContent = new JPanel();
+	private JPanel Score = new JPanel();
+	
+	private GameBoard Board;
+	public static Game game = new Game();
 	
 	public Game()
 	{
@@ -53,6 +57,7 @@ public class Game extends JPanel implements ActionListener {
 		newGame.addActionListener(this);	
 		newSize.addActionListener(this);
 		
+		Start();
 		Board = new GameBoard(size,size, GameContent);
 		
 		Score.add(timer);
@@ -64,7 +69,7 @@ public class Game extends JPanel implements ActionListener {
 	}
 	public static void main(String[] args)
 	{
-		new Window(WIDTH, HEIGHT, TITLE, new Game());
+		new Window(WIDTH, HEIGHT, TITLE, game);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -86,14 +91,53 @@ public class Game extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Kan ej gå över 144 rutor!");
 			size = 12;
 		}
-		if(size <= 1)
+		if(size < 2)
 		{
 			JOptionPane.showMessageDialog(null, "Kan ej gå under 4 rutor!");
 			size = 2;
 		}
+		Start();
 		Board = new GameBoard(size,size, GameContent);
+		tid=0;
 		newSize.setText(size+"");
 		GameContent.repaint();
 		GameContent.revalidate();
 	}
+
+	public synchronized void Start()
+	{
+		if(running)
+			return;
+		
+		t = new Thread(this);
+		running = true;
+		t.start();
+	}
+	public synchronized void Stop()
+	{
+		if(!running)
+			return;
+		
+		running = false;
+		t.interrupt();
+	}
+	
+	public void run() {
+		while(running)
+		{
+			try {
+				t.sleep(10);
+				tid += 0.01;
+				timer.setText(String.format("Tid: %.2f", tid));
+			} catch (InterruptedException e) {
+				// Ska Interuptas
+			}
+		}
+	}
+	
+	public static Game getGameInstance()
+	{
+		return game;
+	}
+	
 }

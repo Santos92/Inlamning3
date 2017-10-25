@@ -5,13 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import Main.Game;
 import Main.GameBoard.Cells;
 import Main.GameBoard.GameBoard;
 
 public class ActionInput implements ActionListener {
 
 	Cells cell0;
-
+	Game game = Game.getGameInstance();
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 			getEmptyCellPosition();
@@ -47,6 +49,7 @@ public class ActionInput implements ActionListener {
 				win++;
 			if(win == GameBoard.GameButtons.size()-1 && GameBoard.GameButtons.getLast().toString().equals(""))
 			{
+				game.Stop();
 				JOptionPane.showMessageDialog(null, "Grattis du klarade spelet!");
 				break;
 			}
