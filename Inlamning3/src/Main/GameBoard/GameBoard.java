@@ -40,5 +40,10 @@ public class GameBoard {
 				index++;
 			}
 		}
-	}	
+	}
+	public void setColors()
+	{
+		for(Cells x : GameButtons)
+			x.setColors();
+	}
 }

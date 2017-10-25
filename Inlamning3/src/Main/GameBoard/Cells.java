@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 
+import Main.Game;
 import Main.Init.ActionInput;
 
 public class Cells {
@@ -19,8 +20,8 @@ public class Cells {
 		if(Number.equals(""))
 			Button.setBackground(Color.white);
 		else
-			Button.setBackground(new Color(150,210,240));
-		Button.setForeground(new Color(0,76,153));
+			Button.setBackground(Game.colorTheme.getBackGroundColor());
+		Button.setForeground(Game.colorTheme.getForeGroundColor());
 		Button.addActionListener(new ActionInput());
 		number = Number;
 		this.row = row;
@@ -54,7 +55,20 @@ public class Cells {
 		if(s.equals(""))
 			Button.setBackground(Color.white);
 		else
-			Button.setBackground(new Color(150,210,240));
+			Button.setBackground(Game.colorTheme.getBackGroundColor());
+	}
+	public void setColors()
+	{
+		if(number.equals(""))
+		{
+			Button.setBackground(Color.white);
+			Button.setForeground(Game.colorTheme.getForeGroundColor());
+		}
+		else
+		{
+			Button.setBackground(Game.colorTheme.getBackGroundColor());
+			Button.setForeground(Game.colorTheme.getForeGroundColor());
+		}
 	}
 	public String toString()
 	{
