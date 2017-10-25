@@ -11,7 +11,7 @@ import Main.Init.ActionInput;
 public class Cells {
 
 	private JButton Button;
-	private String number;
+	private String number; 
 	private int row, col;
 	public Cells(String Number, int col, int row, int FontSize)
 	{

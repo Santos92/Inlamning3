@@ -1,7 +1,7 @@
 package Main.Init;
 
 import java.awt.Color;
-
+ 
 public class ColorThemes {
 
 	Color foreGroundColor;

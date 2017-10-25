@@ -50,7 +50,7 @@ public class Game extends JPanel implements ActionListener, Runnable {
 	private GameBoard Board;
 	
 	private Scanner scan;
-	public static ColorThemes colorTheme;
+	public static ColorThemes colorTheme; 
 	
 	public Game()
 	{
