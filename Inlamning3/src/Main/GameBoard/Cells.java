@@ -16,7 +16,8 @@ public class Cells {
 	{
 		Button = new JButton(Number);
 		Button.setFont(new Font("Arial", Font.BOLD, FontSize));
-		Button.setBackground(new Color(210,210,240));
+		Button.setBackground(new Color(150,210,240));
+		Button.setForeground(new Color(0,76,153));
 		Button.addActionListener(new ActionInput());
 		number = Number;
 		this.row = row;

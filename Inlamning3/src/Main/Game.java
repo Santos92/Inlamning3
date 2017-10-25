@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -66,8 +68,19 @@ public class Game extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
-		int size = Integer.parseInt(newSize.getText());
+		Scanner scan = new Scanner(newSize.getText());
+		try{
+			size = scan.nextInt();
+		}
+		catch(InputMismatchException ex)
+		{
+			JOptionPane.showMessageDialog(null, "Skriv ett nummer mellan 2-12 tack!");
+		}
+		catch(Exception ex)
+		{
+			JOptionPane.showMessageDialog(null, "Oväntat fel inträffade! Stänger av..");
+			System.exit(0);
+		}
 		if(size > 12)
 		{
 			JOptionPane.showMessageDialog(null, "Kan ej gå över 144 rutor!");

@@ -14,17 +14,10 @@ public class ActionInput implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-//		if(e.getActionCommand().equals("Newgame"))
-//		{
-//			GameBoard.shuffle();
-//		}
-
 			getEmptyCellPosition();
 			moveMark(e);
 			checkWin(e);
 	}
-	
 	public void moveMark(ActionEvent e)
 	{
 		for(Cells x : GameBoard.GameButtons)
@@ -41,7 +34,6 @@ public class ActionInput implements ActionListener {
 						cell0.setMark(x.toString());
 						x.setMark("");
 					}
-				break;
 			}
 		}
 	}
@@ -60,8 +52,7 @@ public class ActionInput implements ActionListener {
 			}
 		}
 	}
-	public void getEmptyCellPosition()
-	{
+	public void getEmptyCellPosition(){
 	for(Cells x : GameBoard.GameButtons)
 		if(x.getMark().getText().equals(""))
 			cell0 = x;
