@@ -20,7 +20,7 @@ public class Window extends JFrame {
 		pack();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
+		setResizable(true);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

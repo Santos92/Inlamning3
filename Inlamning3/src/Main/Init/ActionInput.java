@@ -12,13 +12,17 @@ import Main.GameBoard.GameBoard;
 public class ActionInput implements ActionListener {
 
 	Cells cell0;
-	Game game = Game.getGameInstance();
-	
+	private Game game = Game.getGameInstance();
+	public static boolean won = false;
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(!won)
+		{
 			getEmptyCellPosition();
 			moveMark(e);
 			checkWin(e);
+		}
 	}
 	public void moveMark(ActionEvent e)
 	{
@@ -44,13 +48,13 @@ public class ActionInput implements ActionListener {
 		int win = 0;
 		for(int i = 0; i<GameBoard.GameButtons.size(); i++)
 		{
-
 			if(GameBoard.GameButtons.get(i).toString().equals((i+1)+""))
 				win++;
 			if(win == GameBoard.GameButtons.size()-1 && GameBoard.GameButtons.getLast().toString().equals(""))
 			{
 				game.Stop();
-				JOptionPane.showMessageDialog(null, "Grattis du klarade spelet!");
+				won = true;
+				JOptionPane.showMessageDialog(null, "Grattis du klarade spelet!\n" + game.getTid());
 				break;
 			}
 		}

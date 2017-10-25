@@ -16,7 +16,10 @@ public class Cells {
 	{
 		Button = new JButton(Number);
 		Button.setFont(new Font("Arial", Font.BOLD, FontSize));
-		Button.setBackground(new Color(150,210,240));
+		if(Number.equals(""))
+			Button.setBackground(Color.white);
+		else
+			Button.setBackground(new Color(150,210,240));
 		Button.setForeground(new Color(0,76,153));
 		Button.addActionListener(new ActionInput());
 		number = Number;
@@ -48,6 +51,10 @@ public class Cells {
 	{
 		Button.setText(s);
 		number=s;
+		if(s.equals(""))
+			Button.setBackground(Color.white);
+		else
+			Button.setBackground(new Color(150,210,240));
 	}
 	public String toString()
 	{

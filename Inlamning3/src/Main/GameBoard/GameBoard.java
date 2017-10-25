@@ -10,7 +10,7 @@ public class GameBoard {
 
 	public static LinkedList<Cells> GameButtons = new LinkedList<Cells>();
 	private int index = 0;
-	private static Random r = new Random();
+	private Random r = new Random();
 	private LinkedList<String> temp = new LinkedList<String>();
 	public GameBoard(int col, int row, JPanel p)
 	{
