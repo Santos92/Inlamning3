@@ -44,7 +44,7 @@ public class ActionInput implements ActionListener {
 				}
 				else if(row == cell0.getRow() || col == cell0.getCol())
 				{
-					moveSeveralMarks(x);
+					//moveSeveralMarks(x);
 					break;
 				}
 			}
@@ -63,10 +63,10 @@ public class ActionInput implements ActionListener {
 		if(Clicked.getRow() < cell0.getRow())
 		{
 			int swapTimes = (cell0.getRow()- Clicked.getRow());
-			int startRow = Clicked.getRow();
+			int startRow = cell0.getRow()-1;
 
 
-			swapMarksUp(swapTimes, startRow, Clicked);
+			//swapMarksUp(swapTimes, startRow, Clicked);
 			//Clicked.setMark("");
 		}
 	}
@@ -92,17 +92,20 @@ public class ActionInput implements ActionListener {
 	public void swapMarksUp(int swapTimes, int startRow, Cells Clicked)
 	{
 		int i = swapTimes;
-		while (i>startRow)
+		System.out.println(swapTimes);
+		System.out.println(startRow);
+		while (i>swapTimes)
 		{
 			for(int x = GameBoard.GameButtons.size()-1;x>0;x--)
 			{
 				Cells temp = GameBoard.GameButtons.get(x);
 				if(temp.getCol() == cell0.getCol() && temp.getRow() == i)
 				{
-					if(((i+1)*4)< GameBoard.GameButtons.size())
+					if(((i+1)*4)-4< GameBoard.GameButtons.size() && i != Clicked.getRow())
 					{
-						//if(i-1 >0)
-						//temp.setMark(GameBoard.GameButtons.get(((i)*4)+cell0.getCol()).getMark().getText());
+						System.out.println(i);
+						if(i-1 >0)
+						temp.setMark(GameBoard.GameButtons.get(((i)*4)+cell0.getCol()).getMark().getText());
 					}
 					i--;
 				}
