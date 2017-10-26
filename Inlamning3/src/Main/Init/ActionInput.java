@@ -44,7 +44,7 @@ public class ActionInput implements ActionListener {
 				}
 				else if(row == cell0.getRow() || col == cell0.getCol())
 				{
-					//moveSeveralMarks(x);
+					//moveSeveralMarks(x); 
 					break;
 				}
 			}
