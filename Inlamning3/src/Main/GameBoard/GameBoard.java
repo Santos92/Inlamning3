@@ -1,5 +1,5 @@
 package Main.GameBoard;
-
+ 
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.Random;
@@ -40,5 +40,10 @@ public class GameBoard {
 				index++;
 			}
 		}
-	}	
+	}
+	public void setColors()
+	{
+		for(Cells x : GameButtons)
+			x.setColors();
+	}
 }
