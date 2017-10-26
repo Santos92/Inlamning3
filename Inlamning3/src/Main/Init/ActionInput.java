@@ -2,7 +2,6 @@ package Main.Init;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
@@ -43,26 +42,71 @@ public class ActionInput implements ActionListener {
 						x.setMark("");
 					}
 				}
-//				else if(col == cell0.getCol())
-//				{
-//					LinkedList<Cells> temp = new LinkedList<>();
-//					for(Cells z : GameBoard.GameButtons)
-//						if(z.getCol() == cell0.getCol())
-//						{
-//							temp.add(z);
-//						}
-//					for(Cells z : GameBoard.GameButtons)
-//						if(temp.get.getCol() == .get(index))
-//					System.out.println(temp);
-//				}
-//				else if(row == cell0.getRow())
-//				{
-//					
-//				}
-				
+				else if(row == cell0.getRow() || col == cell0.getCol())
+				{
+					moveSeveralMarks(x);
+					break;
+				}
 			}
 		}
 	}
+	
+	public void moveSeveralMarks(Cells Clicked)
+	{
+		if(Clicked.getRow() > cell0.getRow())
+		{
+			int swapTimes = (Clicked.getRow() - cell0.getRow());
+			int startRow = cell0.getRow();
+
+			swapMarksDown(swapTimes, startRow);
+			Clicked.setMark("");
+		}
+		if(Clicked.getRow() < cell0.getRow())
+		{
+			int swapTimes = (Clicked.getRow() - cell0.getRow());
+			int startRow = cell0.getRow();
+
+			swapMarksUp(swapTimes, startRow);
+			Clicked.setMark("");
+		}
+	}
+	
+	public void swapMarksDown(int swapTimes, int startRow)
+	{
+		int i = startRow;
+		while(i<swapTimes)
+		{
+			for(int x = 0;x<GameBoard.GameButtons.size();x++)
+			{
+				Cells temp = GameBoard.GameButtons.get(x);
+				if(temp.getRow() == i && temp.getCol() == cell0.getCol())
+				{
+					if(((i+1)*4)+cell0.getCol()< GameBoard.GameButtons.size())
+						temp.setMark(GameBoard.GameButtons.get(((i+1)*4)+cell0.getCol()).getMark().getText());
+					i++;
+				}
+			}
+		}
+	}
+	
+	public void swapMarksUp(int swapTimes, int startRow)
+	{
+		int i = swapTimes*-1;
+		while(i<startRow)
+		{
+			System.out.println(i);
+			for(int x = GameBoard.GameButtons.size()-1;x>0;x--)
+			{
+				Cells temp = GameBoard.GameButtons.get(x);
+				if(temp.getRow() == i && temp.getCol() == cell0.getCol())
+				{
+					System.out.println(i);
+					i++;
+				}
+			}
+		}
+	}
+	
 	public void checkWin(ActionEvent e)
 	{
 		int win = 0;
