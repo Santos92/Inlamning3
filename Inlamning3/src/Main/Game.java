@@ -190,6 +190,7 @@ public class Game extends JPanel implements ActionListener, Runnable {
 		l.add(new ColorThemes("Standard",new Color(0,76,153),new Color(150,210,240)));
 		l.add(new ColorThemes("Black&White",new Color(0,0,0),new Color(255,255,255)));
 		l.add(new ColorThemes("Shock pink",new Color(255,90,153),new Color(255,200,220)));
+		l.add(new ColorThemes("Smooth",new Color(0,60,70),new Color(150,95,0)));
 		l.add(new ColorThemes("Random",new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)),new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255))));
 		colorTheme = l.get(0);
 		return l;
