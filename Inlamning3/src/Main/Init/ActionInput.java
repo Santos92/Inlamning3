@@ -44,75 +44,102 @@ public class ActionInput implements ActionListener {
 				}
 				else if(row == cell0.getRow() || col == cell0.getCol())
 				{
-					//moveSeveralMarks(x); 
+					moveMarks(x);
+					x.setMark("");
 					break;
 				}
 			}
 		}
 	}
 	
-	public void moveSeveralMarks(Cells Clicked)
+	public void moveMarks(Cells Clicked)
 	{
 		if(Clicked.getRow() > cell0.getRow())
 		{
-			int swapTimes = (Clicked.getRow() - cell0.getRow());
-			int startRow = cell0.getRow();
-			swapMarksDown(swapTimes, startRow);
-			Clicked.setMark("");
+			moveUpDown(Clicked, false);
 		}
 		if(Clicked.getRow() < cell0.getRow())
 		{
-			int swapTimes = (cell0.getRow()- Clicked.getRow());
-			int startRow = cell0.getRow()-1;
-
-
-			//swapMarksUp(swapTimes, startRow, Clicked);
-			//Clicked.setMark("");
+			moveUpDown(Clicked, true);
+		}
+		if(Clicked.getCol() < cell0.getCol())
+		{
+			moveLeftRight(Clicked, true);
+		}
+		if(Clicked.getCol() > cell0.getCol())
+		{
+			moveLeftRight(Clicked, false);
 		}
 	}
-	
-	public void swapMarksDown(int swapTimes, int startRow)
+	public void moveLeftRight(Cells Clicked, boolean moveLeft)
 	{
-		int i = startRow;
-		while(i<swapTimes)
-		{
-			for(int x = 0;x<GameBoard.GameButtons.size();x++)
-			{
-				Cells temp = GameBoard.GameButtons.get(x);
-				if(temp.getRow() == i && temp.getCol() == cell0.getCol())
+		int row = Clicked.getRow();
+		int Lcol = Clicked.getCol();
+		int col = cell0.getCol();
+		int swapTimes = Clicked.getCol() - cell0.getCol();
+		if(moveLeft)
+			swapTimes = cell0.getCol() - Clicked.getCol();
+		
+		for(int a = swapTimes;swapTimes>0;swapTimes-- )
+			for(Cells x : GameBoard.GameButtons)
+				for(Cells i : GameBoard.GameButtons)
 				{
-					if(((i+1)*4)+cell0.getCol()< GameBoard.GameButtons.size())
-						temp.setMark(GameBoard.GameButtons.get(((i+1)*4)+cell0.getCol()).getMark().getText());
-					i++;
-				}
-			}
-		}
-	}
-	
-	public void swapMarksUp(int swapTimes, int startRow, Cells Clicked)
-	{
-		int i = swapTimes;
-		System.out.println(swapTimes);
-		System.out.println(startRow);
-		while (i>swapTimes)
-		{
-			for(int x = GameBoard.GameButtons.size()-1;x>0;x--)
-			{
-				Cells temp = GameBoard.GameButtons.get(x);
-				if(temp.getCol() == cell0.getCol() && temp.getRow() == i)
-				{
-					if(((i+1)*4)-4< GameBoard.GameButtons.size() && i != Clicked.getRow())
+					if(!moveLeft)
 					{
-						System.out.println(i);
-						if(i-1 >0)
-						temp.setMark(GameBoard.GameButtons.get(((i)*4)+cell0.getCol()).getMark().getText());
+						if(x.getCol() == col && x.getRow() == row && col<Lcol)
+							if(i.getCol() == col+1 && i.getRow() == row)
+							{
+								x.setMark(i.toString());
+								col++;
+								break;
+							}
 					}
-					i--;
+					else
+					{
+						if(x.getCol() == col && x.getRow() == row && col>Lcol)
+							if(i.getCol() == col-1 && i.getRow() == row)
+							{
+								x.setMark(i.toString());
+								col--;
+								break;
+							}
+					}
 				}
-			}
-		}
 	}
-	
+	public void moveUpDown(Cells Clicked, boolean moveUp)
+	{
+		int col = Clicked.getCol();
+		int Lrow = Clicked.getRow();
+		int row = cell0.getRow();
+		int swapTimes = cell0.getRow() - Clicked.getRow();
+		if(!moveUp)
+			swapTimes = Clicked.getRow() - cell0.getRow();
+		for(int a = swapTimes;swapTimes>0;swapTimes-- )
+			for(Cells x : GameBoard.GameButtons)
+				for(Cells i : GameBoard.GameButtons)
+				{
+					if(moveUp)
+					{
+						if(x.getRow() == row && x.getCol() == col && row>Lrow)
+							if(i.getRow() == row-1 && i.getCol() == col)
+							{
+								x.setMark(i.toString());
+								row--;
+								break;
+							}
+					}
+					else
+					{
+						if(x.getRow() == row && x.getCol() == col && row<Lrow)
+							if(i.getRow() == row+1 && i.getCol() == col)
+							{
+							x.setMark(i.toString());
+							row++;
+							break;
+							}
+					}
+				}
+	}
 	public void checkWin(ActionEvent e)
 	{
 		int win = 0;
