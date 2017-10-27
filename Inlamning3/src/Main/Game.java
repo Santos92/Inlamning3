@@ -60,7 +60,7 @@ public class Game extends JPanel implements ActionListener, Runnable {
 			themeChanger.addItem(x.toString());
 		
 		Meny.setLayout(new FlowLayout());
-		Meny.setPreferredSize(new Dimension(110,0));
+		Meny.setPreferredSize(new Dimension(120,0));
 		
 		Meny.add(newGame);
 		Meny.add(Size);
@@ -117,6 +117,7 @@ public class Game extends JPanel implements ActionListener, Runnable {
 			Start();
 			Board = new GameBoard(size,size, GameContent);
 			tid=0;
+			ActionInput.Moves=0;
 			newSize.setText(size+"");
 			GameContent.repaint();
 			GameContent.revalidate();
@@ -164,7 +165,11 @@ public class Game extends JPanel implements ActionListener, Runnable {
 				double sekunder = tid%60;
 				timer.setText(String.format("Tid: %02d : %.2f", Minuter,sekunder));
 			} catch (InterruptedException e) {
-				// Ska Interuptas
+				if(running)
+				{
+					JOptionPane.showMessageDialog(null, "Något gick fel!");
+					System.exit(0);
+				}
 			}
 		}
 	}
@@ -217,4 +222,5 @@ public class Game extends JPanel implements ActionListener, Runnable {
 		GameContent.setBackground(colorTheme.getBackGroundColor());
 		Board.setColors();
 	}
+
 }

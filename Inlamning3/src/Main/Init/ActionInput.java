@@ -14,6 +14,7 @@ public class ActionInput implements ActionListener {
 	Cells cell0;
 	private Game game = Game.getGameInstance();
 	public static boolean won = false;
+	public static int Moves = 0;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -26,6 +27,7 @@ public class ActionInput implements ActionListener {
 	}
 	public void moveMark(ActionEvent e)
 	{
+
 		for(Cells x : GameBoard.GameButtons)
 		{
 			if(e.getSource().equals(x.getMark()))
@@ -40,6 +42,7 @@ public class ActionInput implements ActionListener {
 					{
 						cell0.setMark(x.toString());
 						x.setMark("");
+						Moves++;
 					}
 				}
 				else if(row == cell0.getRow() || col == cell0.getCol())
@@ -91,6 +94,7 @@ public class ActionInput implements ActionListener {
 							{
 								x.setMark(i.toString());
 								col++;
+								Moves++;
 								break;
 							}
 					}
@@ -101,6 +105,7 @@ public class ActionInput implements ActionListener {
 							{
 								x.setMark(i.toString());
 								col--;
+								Moves++;
 								break;
 							}
 					}
@@ -125,6 +130,7 @@ public class ActionInput implements ActionListener {
 							{
 								x.setMark(i.toString());
 								row--;
+								Moves++;
 								break;
 							}
 					}
@@ -135,6 +141,7 @@ public class ActionInput implements ActionListener {
 							{
 							x.setMark(i.toString());
 							row++;
+							Moves++;
 							break;
 							}
 					}
@@ -151,7 +158,7 @@ public class ActionInput implements ActionListener {
 			{
 				game.Stop();
 				won = true;
-				JOptionPane.showMessageDialog(null, "Grattis du klarade spelet!\n" + game.getTid());
+				JOptionPane.showMessageDialog(null, "Grattis du klarade spelet!\n" + game.getTid() + "\nAntal drag: " + Moves);
 				break;
 			}
 		}
