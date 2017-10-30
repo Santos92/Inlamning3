@@ -46,7 +46,7 @@ public class Game extends JPanel implements ActionListener, Runnable {
 	private JPanel Meny = new JPanel();
 	private JPanel GameContent = new JPanel();
 	
-	public static Game game = new Game();
+	public static Game game;
 	private GameBoard Board;
 	
 	private Scanner scan;
@@ -54,6 +54,7 @@ public class Game extends JPanel implements ActionListener, Runnable {
 	
 	public Game()
 	{
+		game = this;
 		ColorThemes = initColorThemes();	
 		
 		for(ColorThemes x : ColorThemes)
@@ -75,15 +76,11 @@ public class Game extends JPanel implements ActionListener, Runnable {
 
 		Board = new GameBoard(size,size, GameContent);
 		setColors();
-		Start();
 		
 		setLayout(new BorderLayout());
 		add(Meny, BorderLayout.WEST);
 		add(GameContent, BorderLayout.CENTER);
-	}
-	public static void main(String[] args)
-	{
-		new Window(WIDTH, HEIGHT, TITLE, game);
+		Start();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -223,4 +220,9 @@ public class Game extends JPanel implements ActionListener, Runnable {
 		Board.setColors();
 	}
 
+	public static void main(String[] args)
+	{
+		new Window(WIDTH, HEIGHT, TITLE, new Game());
+	}
+	
 }

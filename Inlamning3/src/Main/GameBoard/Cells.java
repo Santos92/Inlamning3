@@ -16,9 +16,9 @@ public class Cells {
 	public Cells(String Number, int col, int row, int FontSize)
 	{
 		Button = new JButton(Number);
-		Button.setFont(new Font("Arial", Font.BOLD, FontSize));
+		Button.setFont(new Font("Serif", Font.BOLD, FontSize));
 		if(Number.equals(""))
-			Button.setBackground(Color.white);
+			Button.setBackground(Color.BLACK);
 		else
 			Button.setBackground(Game.colorTheme.getBackGroundColor());
 		Button.setForeground(Game.colorTheme.getForeGroundColor());
@@ -35,15 +35,6 @@ public class Cells {
 	public int getCol() {
 		return col;
 	}
-
-	public void setRow(int row) {
-		this.row = row;
-	}
-
-	public void setCol(int col) {
-		this.col = col;
-	}
-
 	public JButton getMark()
 	{
 		return Button;
@@ -53,7 +44,7 @@ public class Cells {
 		Button.setText(s);
 		number=s;
 		if(s.equals(""))
-			Button.setBackground(Color.white);
+			Button.setBackground(Color.BLACK);
 		else
 			Button.setBackground(Game.colorTheme.getBackGroundColor());
 	}
@@ -61,7 +52,7 @@ public class Cells {
 	{
 		if(number.equals(""))
 		{
-			Button.setBackground(Color.white);
+			Button.setBackground(Color.BLACK);
 			Button.setForeground(Game.colorTheme.getForeGroundColor());
 		}
 		else

@@ -36,16 +36,7 @@ public class ActionInput implements ActionListener {
 				int row = x.getRow();
 				if(x.equals(cell0))
 					JOptionPane.showMessageDialog(null, "Kan inte flytta en tom ruta");
-				if(col-1 == cell0.getCol() || col+1 == cell0.getCol() || row-1 == cell0.getRow() || row+1 == cell0.getRow())
-				{
-					if(row == cell0.getRow() || col == cell0.getCol())
-					{
-						cell0.setMark(x.toString());
-						x.setMark("");
-						Moves++;
-					}
-				}
-				else if(row == cell0.getRow() || col == cell0.getCol())
+				if(row == cell0.getRow() || col == cell0.getCol())
 				{
 					moveMarks(x);
 					x.setMark("");
